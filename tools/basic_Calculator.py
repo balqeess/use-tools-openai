@@ -2,7 +2,7 @@ import operator
 import json
 # its important to have the docString as coprehensive as possible so that
 # the llm understands the tools usecase
-def basic_calculator(input_str):
+def basic_Calculator(input_str):
     """
     Perform a numeric operation on two numbers based on the input string.
 

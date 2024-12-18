@@ -175,24 +175,28 @@ class Agent:
 
         for tool in self.tools:
             if tool.__name__ == tool_choice:
-                # Handle SQL tools
+        # Handle SQL tools
                 if tool in [get_metadata, list_tables, check_query, execute_query]:
                     if not self.db_engine:
                         raise ValueError("Database engine is not initialized. Provide a valid connection string.")
 
-                    # Remove 'engine' key if present in tool_input
-                    if isinstance(tool_input, dict) and "engine" in tool_input:
-                        tool_input.pop("engine")
-
-                    # Execute the tool
-                    query_result = tool(self.db_engine, **tool_input)
+                    if tool == get_metadata:
+                        # Call get_metadata directly with self.db_engine
+                        query_result = tool(self.db_engine)
+                    elif isinstance(tool_input, dict):
+                        # Use tool_input for other SQL tools
+                        query_result = tool(self.db_engine, **tool_input)
+                    else:
+                        raise ValueError(f"Invalid tool_input for {tool_choice}: {tool_input}")
                 else:
                     # Handle non-SQL tools
                     query_result = tool(tool_input)
 
 
         print(tool_input)
-        return tool_input
+        return query_result if tool_choice else tool_input
+
+        # return tool_input
 
 
 

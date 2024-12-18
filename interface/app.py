@@ -7,7 +7,7 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(project_root)
 
 import tempfile
-from tools.basic_calculator import basic_calculator
+from tools.basic_Calculator import basic_Calculator
 from tools.reverser import reverse_string
 from tools.sql_database_toolkit import get_metadata, list_tables, check_query, execute_query
 from models.openai_models import OpenAIModel
@@ -35,7 +35,7 @@ if uploaded_file is not None:
     st.success(f"Database loaded successfully: {temp_file.name}")
 
     # Step 2: Initialize the Agent
-    tools = [basic_calculator, reverse_string, get_metadata, list_tables, check_query, execute_query]
+    tools = [basic_Calculator, reverse_string, get_metadata, list_tables, check_query, execute_query]
 
     model_service = OpenAIModel
     model_name = 'gpt-4o'
