@@ -14,10 +14,6 @@ You will generate the following JSON response and:
 Here is a list of your tools along with their descriptions:
 {tool_descriptions}
 
-Database Schema
-For database-related queries, refer to the schema provided:
-{schema_info}
-
 Please make a decision based on the provided user query and the available tools.
 
 """
